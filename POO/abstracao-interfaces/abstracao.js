@@ -24,5 +24,3 @@ class Quadrado extends FormaGeometrica{
 class Programa{
     meuQuadrado = new Quadrado("Quadrado", 4, 4)
 }
-
-export Quadrado

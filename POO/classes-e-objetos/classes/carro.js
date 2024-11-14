@@ -1,53 +1,43 @@
-import Pessoa from "./pessoa.js";
-
-export default class Carro {
-    
-    constructor(dono, modelo, cor, ano, marca, consumo, tipoCombustivel) {
-        this.dono = new Pessoa(dono.nome, dono.idade);
-        this.cor = cor;
-        this.ano = ano;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.consumo = consumo;
-        this.tipoCombustivel = tipoCombustivel;
-        this.combustivel = 0;
-        this.kmRodados = 0;
-        this.velocidade = 0;
-
-    };
-
-    info(){
-        return `Carro: ${this.modelo} | ${this.ano} | ${this.marca}; \n 
-        Dono: ${this.dono.info()}; \n
-        Tipo de combustível: ${this.tipoCombustivel}; \n
-        Consumo médio de: ${this.consumo} km/l; \n
-        ` 
+class Carro {
+    constructor(dono, modelo, cor, ano, marca, consumo, tipoCombustivel, capacidadeCombustivel, kmRodados, velocidade) {
+      this.dono = dono;
+      this.modelo = modelo;
+      this.cor = cor;
+      this.ano = ano;
+      this.marca = marca;
+      this.consumo = consumo;
+      this.tipoCombustivel = tipoCombustivel;
+      this.capacidadeCombustivel = capacidadeCombustivel;
+      this.kmRodados = kmRodados;
+      this.velocidade = velocidade;
     }
-    
-    abastecer(valor){
-        this.combustivel += valor;
+  
+    info() {
+      return `Dono: ${this.dono.info()}\nModelo: ${this.modelo}\nCor: ${this.cor}\nAno: ${this.ano}\nMarca: ${this.marca}\nConsumo: ${this.consumo} km/l\nTipo de Combustível: ${this.tipoCombustivel}\nCapacidade do Tanque: ${this.capacidadeCombustivel} litros\nKm Rodados: ${this.kmRodados}\nVelocidade: ${this.velocidade} km/h`;
     }
-
-    acelerar(){
-        if (this.combustivel > 0) { 
-            this.velocidade++;
-            this.combustivel -= this.consumo;
-            //Como consumir o combustível no método acelerar?
-            console.log(`O carro está acelerando a: ${this.velocidade} km/h`);
-        } else {
-            console.log("Combustível insuficiente para propulsão do motor.");
-        }
+  
+    acelerar() {
+      if (this.capacidadeCombustivel > 0) {
+        this.velocidade += 10;
+        this.capacidadeCombustivel -= 0.5; 
+        console.log(`Metendo Velo... Rapidez: ${this.velocidade} km/h`);
+      } else {
+        console.log("Não tem água no tanque, pobre! Vai abastecer doido");
+      }
     }
-
-    freiar(){
-        if (this.velocidade <= 0) {
-            console.log(`O carro está freiando...`);
-            this.velocidade = 0;
-        } else {
-            console.log('O carro já está parado')
-        }
+  
+    freiar() {
+      if (this.velocidade > 0) {
+        this.velocidade -= 10;
+        console.log(`Parando o possante... Rapidez: ${this.velocidade} km/h`);
+        this.freiar(); 
+      }
     }
+  
+    abastecer() {
+      this.capacidadeCombustivel = 50;
+      console.log("Acabou a água no tanque, vai abastecer seu pobre");
+    }
+  }
 
-
-
-}
+  export default Carro
