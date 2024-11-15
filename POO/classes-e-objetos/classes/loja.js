@@ -8,6 +8,7 @@ class Produto {
   class Carrinho {
     constructor() {
       this.itens = [];
+      this.total = 0
     }
   
     adicionarItem(produto) {

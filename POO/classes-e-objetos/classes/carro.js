@@ -18,7 +18,7 @@ class Carro {
   
     acelerar() {
       if (this.capacidadeCombustivel > 0) {
-        this.velocidade += 10;
+        this.velocidade += 30;
         this.capacidadeCombustivel -= 0.5; 
         console.log(`Metendo Velo... Rapidez: ${this.velocidade} km/h`);
       } else {
@@ -27,11 +27,11 @@ class Carro {
     }
   
     freiar() {
-      if (this.velocidade > 0) {
+      while (this.velocidade > 0) {
         this.velocidade -= 10;
         console.log(`Parando o possante... Rapidez: ${this.velocidade} km/h`);
-        this.freiar(); 
       }
+      console.log("Sua bomba parou toda");
     }
   
     abastecer() {
